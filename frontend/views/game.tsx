@@ -1,6 +1,7 @@
 import { AspectRatio, Box, Flex, Heading, Text, Image, Button, Switch } from '@chakra-ui/react';
 import { useToast } from 'hooks/useToast';
-import { useEffect, useState } from 'react';
+import { isElement } from 'lodash';
+import { useCallback, useEffect, useState } from 'react';
 import { PERSON_DATA_ARRAY, Person } from 'utils/constants';
 
 const shuffleArray = (array: any[]) => {
@@ -53,21 +54,41 @@ const Game: React.FC<Props> = ({}) => {
     setOptions(shuffleArray([name, ...otherOptions]));
   }, [index]);
 
-  const onGuess = (guessIndex: number) => {
-    const correctName = allPeople[index].names[0];
-    const guess = options[guessIndex];
+  const onGuess = useCallback(
+    (guessIndex: number) => {
+      console.log(guessIndex);
+      const correctName = allPeople[index].names[0];
+      const guess = options[guessIndex];
 
-    if (correctName === guess) {
-      setCorrectGuesses(correctGuesses + 1);
-      setStreak(streak + 1);
-      toast.success('Woohoo! You got it right!');
-    } else {
-      setStreak(0);
-      toast.error(`Oh no, that's not right. That's a picture of ${allPeople[index].names[0]}!!`);
-    }
+      console.log(correctName, guess);
 
-    setIsSelectedState(guessIndex);
-  };
+      if (correctName === guess) {
+        setCorrectGuesses(correctGuesses + 1);
+        setStreak(streak + 1);
+        toast.success('Woohoo! You got it right!');
+      } else {
+        setStreak(0);
+        toast.error(`Oh no, that's not right. That's a picture of ${allPeople[index].names[0]}!!`);
+      }
+
+      setIsSelectedState(guessIndex);
+    },
+    [index, allPeople, options, streak, correctGuesses, toast],
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isSelectedState !== null && e.key === 'Enter') {
+        setIsSelectedState(null);
+        setIndex((index + 1) % allPeople.length);
+      }
+      if (isSelectedState === null && ['1', '2', '3', '4'].includes(e.key)) {
+        onGuess(Number(e.key) - 1);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [index, isSelectedState, onGuess]);
 
   const onNext = () => {
     setIsSelectedState(null);
@@ -100,8 +121,16 @@ const Game: React.FC<Props> = ({}) => {
               onClick={() => onGuess(idx)}
               colorScheme="green"
             >
-              {showFullName ? option : option.split(' ')[0]}
-              {isSelectedState !== null && option === allPeople[index].names[0] && ' ✅'}
+              <Flex w="full" gap={2} align="baseline">
+                <Box border="1px" w="20px" rounded="md">
+                  {idx + 1}
+                </Box>
+                <Flex as="span" flexGrow={1}>
+                  {showFullName ? option : option.split(' ')[0]}
+
+                  {isSelectedState !== null && option === allPeople[index].names[0] && ' ✅'}
+                </Flex>
+              </Flex>
             </Button>
           );
         })}
@@ -110,7 +139,7 @@ const Game: React.FC<Props> = ({}) => {
       {isSelectedState !== null && (
         <Flex mt={4} align="center" flexDir="column" w="300px" gap={2}>
           <Button w="full" onClick={onNext} colorScheme="blackAlpha">
-            Next ➡️
+            Next ➡️ (ENTER)
           </Button>
         </Flex>
       )}
