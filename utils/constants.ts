@@ -301,7 +301,7 @@ export const PERSON_DATA_ARRAY: Person[] = [
       'https://sloan-data.mit.edu/\\\\\\\\_odata/Photo?PersonID=233567&PhotoTypeID=1&width=250',
   },
   {
-    names: ['M. Patrick Serbent'],
+    names: ['Patrick Serbent'],
     imageUrl:
       'https://sloan-data.mit.edu/\\\\\\\\_odata/Photo?PersonID=231958&PhotoTypeID=1&width=250',
   },
