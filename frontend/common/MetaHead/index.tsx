@@ -1,8 +1,9 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-const DEFAULT_TITLE = 'Med uses their Head';
-const DEFAULT_DESCRIPTION = 'Objectively, were the best ocean because we all know eachothers names';
+const DEFAULT_TITLE = 'Mediter-namean Gamean';
+const DEFAULT_DESCRIPTION =
+  "Objectively, we're the best ocean because we all know eachothers names";
 const DEFAULT_IMAGE = '';
 
 const removeUrlParams = (url: string) => {

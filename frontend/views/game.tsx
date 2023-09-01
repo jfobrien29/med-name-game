@@ -97,7 +97,7 @@ const Game: React.FC<Props> = ({}) => {
 
   return (
     <Flex align="center" flexDir="column" w="full" pt={[4, 4, 8]}>
-      <Heading fontSize={['2xl', '2xl', '4xl']}>Mediterranean Namean Gamean</Heading>
+      <Heading fontSize={['2xl', '2xl', '4xl']}>Mediter-namean Gamean</Heading>
       <Flex gap={4} fontWeight="semibold" mt={2}>
         <Text>Correct: {correctGuesses}</Text>
         <Text>
