@@ -105,12 +105,21 @@ const Game: React.FC<Props> = ({}) => {
           {getStreakEmoji(streak)}
         </Text>
       </Flex>
-      <Flex justify="center" align="center" p={4} rounded="lg" bg="green" mt={2}>
+      <Flex
+        justify="center"
+        align="center"
+        p={4}
+        rounded="lg"
+        bg="green.500"
+        mt={2}
+        dropShadow="2xl"
+      >
         <AspectRatio ratio={1} w="300px" h="300px" rounded="md" overflow="hidden">
           <Image src={allPeople[index].imageUrl} objectFit="fill" />
         </AspectRatio>
       </Flex>
-      <Box>{allPeople[index].names[0]}</Box>
+      {/* <Box>{allPeople[index].names[0]}</Box> */}
+      <Box>{allPeople[index].imageUrl}</Box>
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {
           return (

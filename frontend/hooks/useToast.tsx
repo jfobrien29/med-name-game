@@ -8,7 +8,7 @@ export const useToast = () => {
       description: message,
       position: 'top',
       status: 'success',
-      duration: 3000,
+      duration: 1000,
       isClosable: true,
       styleConfig: {
         textColor: 'white',
