@@ -44,6 +44,7 @@ const Game: React.FC<Props> = ({}) => {
   const [streak, setStreak] = useState(0);
   const [showFullName, setShowFullName] = useState(false);
   const toast = useToast();
+  const [isSelectedState, setIsSelectedState] = useState<null | number>(null);
 
   useEffect(() => {
     const name = allPeople[index].names[0];
@@ -65,6 +66,11 @@ const Game: React.FC<Props> = ({}) => {
       toast.error(`Oh no, that's not right. That's a picture of ${allPeople[index].names[0]}!!`);
     }
 
+    setIsSelectedState(guessIndex);
+  };
+
+  const onNext = () => {
+    setIsSelectedState(null);
     setIndex((index + 1) % allPeople.length);
   };
 
@@ -87,12 +93,27 @@ const Game: React.FC<Props> = ({}) => {
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {
           return (
-            <Button w="full" key={option} onClick={() => onGuess(idx)} colorScheme="green">
+            <Button
+              isDisabled={isSelectedState !== null}
+              w="full"
+              key={option}
+              onClick={() => onGuess(idx)}
+              colorScheme="green"
+            >
               {showFullName ? option : option.split(' ')[0]}
+              {isSelectedState !== null && option === allPeople[index].names[0] && ' ✅'}
             </Button>
           );
         })}
       </Flex>
+
+      {isSelectedState !== null && (
+        <Flex mt={4} align="center" flexDir="column" w="300px" gap={2}>
+          <Button w="full" onClick={onNext} colorScheme="blackAlpha">
+            Next ➡️
+          </Button>
+        </Flex>
+      )}
 
       <Flex mt={4} gap={2}>
         Show Full Name <Switch onChange={(e) => setShowFullName(e.target.checked)} />
