@@ -1,6 +1,5 @@
 import { AspectRatio, Box, Flex, Heading, Text, Image, Button, Switch } from '@chakra-ui/react';
 import { useToast } from 'hooks/useToast';
-import { isElement } from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 import { PERSON_DATA_ARRAY, Person } from 'utils/constants';
 
@@ -35,10 +34,11 @@ const getStreakEmoji = (streak: number): string => {
   }
 };
 
-interface Props {}
+interface Props {
+  allPeople: Person[];
+}
 
-const Game: React.FC<Props> = ({}) => {
-  const [allPeople] = useState<Person[]>(shuffleArray(PERSON_DATA_ARRAY));
+const Game: React.FC<Props> = ({ allPeople }) => {
   const [index, setIndex] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
   const [correctGuesses, setCorrectGuesses] = useState(0);
@@ -56,11 +56,8 @@ const Game: React.FC<Props> = ({}) => {
 
   const onGuess = useCallback(
     (guessIndex: number) => {
-      console.log(guessIndex);
       const correctName = allPeople[index].names[0];
       const guess = options[guessIndex];
-
-      console.log(correctName, guess);
 
       if (correctName === guess) {
         setCorrectGuesses(correctGuesses + 1);
@@ -95,6 +92,8 @@ const Game: React.FC<Props> = ({}) => {
     setIndex((index + 1) % allPeople.length);
   };
 
+  console.log(allPeople[0]);
+
   return (
     <Flex align="center" flexDir="column" w="full" pt={[4, 4, 8]}>
       <Heading fontSize={['2xl', '2xl', '4xl']}>Mediter-namean Gamean</Heading>
@@ -118,8 +117,6 @@ const Game: React.FC<Props> = ({}) => {
           <Image src={allPeople[index].imageUrl} objectFit="fill" />
         </AspectRatio>
       </Flex>
-      {/* <Box>{allPeople[index].names[0]}</Box> */}
-      <Box>{allPeople[index].imageUrl}</Box>
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {
           return (
@@ -131,10 +128,15 @@ const Game: React.FC<Props> = ({}) => {
               colorScheme="green"
             >
               <Flex w="full" gap={2} align="baseline">
-                <Box border="1px" w="20px" rounded="md">
+                <Box border="1px" w="20px" rounded="md" display={['none', 'none', 'block']}>
                   {idx + 1}
                 </Box>
-                <Flex as="span" flexGrow={1}>
+                <Flex
+                  as="span"
+                  flexGrow={1}
+                  justify={['center', 'center', 'start']}
+                  w={['full', 'full', 'fit-content']}
+                >
                   {showFullName ? option : option.split(' ')[0]}
 
                   {isSelectedState !== null && option === allPeople[index].names[0] && ' ✅'}

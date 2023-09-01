@@ -44,7 +44,7 @@ export const useToast = () => {
       description: message,
       position: 'top',
       status: 'error',
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
     });
   };
