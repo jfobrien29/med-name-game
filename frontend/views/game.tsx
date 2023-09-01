@@ -70,7 +70,7 @@ const Game: React.FC<Props> = ({}) => {
 
   return (
     <Flex align="center" flexDir="column" w="full" pt={[4, 4, 8]}>
-      <Heading fontSize={['2xl', '2xl', '4xl']}>Mediterranean Name Game</Heading>
+      <Heading fontSize={['2xl', '2xl', '4xl']}>Mediterranean Namean Gamean</Heading>
       <Flex gap={4} fontWeight="semibold" mt={2}>
         <Text>Correct: {correctGuesses}</Text>
         <Text>
@@ -78,9 +78,11 @@ const Game: React.FC<Props> = ({}) => {
           {getStreakEmoji(streak)}
         </Text>
       </Flex>
-      <AspectRatio ratio={1} w="300px" h="300px" mt={2}>
-        <Image src={allPeople[index].imageUrl} objectFit="fill" />
-      </AspectRatio>
+      <Flex justify="center" align="center" p={4} rounded="lg" bg="green" mt={2}>
+        <AspectRatio ratio={1} w="300px" h="300px" rounded="md" overflow="hidden">
+          <Image src={allPeople[index].imageUrl} objectFit="fill" />
+        </AspectRatio>
+      </Flex>
       <Box>{allPeople[index].names[0]}</Box>
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {

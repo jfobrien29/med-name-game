@@ -6,8 +6,9 @@ export const useToast = () => {
   const success = (message: string) => {
     toast({
       description: message,
+      position: 'top',
       status: 'success',
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
       styleConfig: {
         textColor: 'white',
@@ -18,8 +19,9 @@ export const useToast = () => {
   const warning = (message: string) => {
     toast({
       description: message,
+      position: 'top',
       status: 'warning',
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
     });
   };
@@ -27,8 +29,9 @@ export const useToast = () => {
   const info = (message: string) => {
     toast({
       description: message,
+      position: 'top',
       status: 'info',
-      duration: 5000,
+      duration: 3000,
       isClosable: true,
       styleConfig: {
         textColor: 'white',
@@ -39,6 +42,7 @@ export const useToast = () => {
   const error = (message: string) => {
     toast({
       description: message,
+      position: 'top',
       status: 'error',
       duration: 5000,
       isClosable: true,

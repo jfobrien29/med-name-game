@@ -1,4 +1,4 @@
-import { Center, Flex, VStack, Text, Progress, Box } from '@chakra-ui/react';
+import { Center, Flex, VStack, Text, Progress, Box, Link } from '@chakra-ui/react';
 
 interface Props {
   isLoading?: boolean;
@@ -48,6 +48,9 @@ const PageContainer: React.FC<Props> = ({ isLoading, loadingText, children, maxW
             </Flex>
           </Flex>
         </Box>
+      </Flex>
+      <Flex w="full" borderTop="1px" borderColor="gray.200" fontSize="xs" justify="center">
+        <Link href="https://twitter.com/thejackobrien">Made with 💚 by Jack O'Brien</Link>
       </Flex>
     </Flex>
   );
