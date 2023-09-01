@@ -14,7 +14,6 @@ export default function LandingPage({}: LandingPageProps) {
   );
 }
 
-
 export async function getStaticProps() {
   try {
     return {

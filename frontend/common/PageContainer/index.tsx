@@ -8,12 +8,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const PageContainer: React.FC<Props> = ({
-  isLoading,
-  loadingText,
-  children,
-  maxW,
-}) => {
+const PageContainer: React.FC<Props> = ({ isLoading, loadingText, children, maxW }) => {
   return (
     <Flex flexDir="column" h="100vh" position="relative" bg="white" w="full">
       {/* <Header onOpenSide={onSideBarOpen} onCloseSide={onSideBarClose} isOpen={isOpen} /> */}
@@ -26,7 +21,7 @@ const PageContainer: React.FC<Props> = ({
             w="full"
             alignItems="center"
             // mt={[0, 0, '89px']}
-            mt={[0, 0, '60px']}
+            mt={[0, 0, 0]}
             textColor="gray.700"
             background="linear-gradient(90deg,#fff 8px,transparent 1%) 50%,linear-gradient(#fff 8px,transparent 1%) 50%,#f4f4f6"
             backgroundSize="10px 10px"

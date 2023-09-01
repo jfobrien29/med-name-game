@@ -1,15 +1,13 @@
 {
-  "name": "promptsgithub",
+  "name": "med-name-game",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npx prisma generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cms": "cd cms && yarn dev",
-    "cms-deploy": "cd cms && npx sanity deploy",
-    "db": "npx prisma studio"
+    "pc": "node scripts/print_csv.js"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.17",
@@ -77,6 +75,7 @@
     "stripe": "^12.9.0",
     "supabase": "^1.50.4",
     "swr": "^2.1.5",
+    "ts-node": "^10.9.1",
     "twitter-api-v2": "^1.14.2",
     "typescript": "^4.9.5",
     "use-debounce": "^9.0.4",
