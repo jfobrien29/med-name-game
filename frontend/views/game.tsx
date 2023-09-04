@@ -113,7 +113,13 @@ const Game: React.FC<Props> = ({ allPeople }) => {
         mt={2}
         dropShadow="2xl"
       >
-        <AspectRatio ratio={1} w="300px" h="300px" rounded="md" overflow="hidden">
+        <AspectRatio
+          ratio={1}
+          w={['225px', '225px', '300px']}
+          h={['225px', '225px', '300px']}
+          rounded="md"
+          overflow="hidden"
+        >
           <Image
             src={`/people/${allPeople[index].names[0]
               .toLowerCase()
@@ -123,6 +129,7 @@ const Game: React.FC<Props> = ({ allPeople }) => {
           />
         </AspectRatio>
       </Flex>
+      {allPeople[index].names[0]}
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {
           return (
