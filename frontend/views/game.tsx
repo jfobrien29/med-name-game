@@ -114,7 +114,13 @@ const Game: React.FC<Props> = ({ allPeople }) => {
         dropShadow="2xl"
       >
         <AspectRatio ratio={1} w="300px" h="300px" rounded="md" overflow="hidden">
-          <Image src={allPeople[index].imageUrl} objectFit="fill" />
+          <Image
+            src={`/people/${allPeople[index].names[0]
+              .toLowerCase()
+              .replaceAll(' ', '-')
+              .trim()}.jpeg`}
+            objectFit="fill"
+          />
         </AspectRatio>
       </Flex>
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
