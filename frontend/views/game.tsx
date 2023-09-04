@@ -129,7 +129,6 @@ const Game: React.FC<Props> = ({ allPeople }) => {
           />
         </AspectRatio>
       </Flex>
-      {allPeople[index].names[0]}
       <Flex mt={8} align="center" flexDir="column" w="300px" gap={2}>
         {options.map((option: any, idx: number) => {
           return (
