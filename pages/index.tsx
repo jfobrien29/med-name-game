@@ -30,7 +30,7 @@ export async function getStaticProps() {
   try {
     return {
       props: {
-        allPeople: PERSON_DATA_ARRAY,
+        allPeople: shuffleArray(PERSON_DATA_ARRAY),
       },
       revalidate: 60,
     };
