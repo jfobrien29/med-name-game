@@ -41,7 +41,7 @@ interface Props {
 const Game: React.FC<Props> = ({ allPeople }) => {
   const [index, setIndex] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
-  const [correctGuesses, setCorrectGuesses] = useState(0);
+  const [correctGuesses, setCorrectGuesses] = useState<number>(0);
   const [streak, setStreak] = useState(0);
   const [showFullName, setShowFullName] = useState(false);
   const toast = useToast();
@@ -97,7 +97,15 @@ const Game: React.FC<Props> = ({ allPeople }) => {
   return (
     <Flex align="center" flexDir="column" w="full" pt={[4, 4, 8]}>
       <Heading fontSize={['2xl', '2xl', '4xl']}>Mediter-namean Gamean</Heading>
-      <Flex gap={4} fontWeight="semibold" mt={2}>
+      <Flex>
+        <Text fontSize="xs">
+          {allPeople.length - index - (isSelectedState !== null ? 1 : 0)} names left to guess.
+          You've gotten{' '}
+          {((correctGuesses / (index + (isSelectedState !== null ? 1 : 0))) * 100).toFixed(0)}%
+          right!
+        </Text>
+      </Flex>
+      <Flex gap={4} fontWeight="semibold" mt={2} fontSize={['sm', 'sm', 'md']}>
         <Text>Correct: {correctGuesses}</Text>
         <Text>
           Streak: {streak}
