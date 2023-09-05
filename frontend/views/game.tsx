@@ -132,7 +132,7 @@ const Game: React.FC<Props> = ({ allPeople }) => {
   );
 
   const onNext = useCallback(() => {
-    if (index === 1) {
+    if (index + 1 === allPeople.length) {
       onOpen();
     } else {
       setIsSelectedState(null);
