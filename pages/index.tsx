@@ -32,7 +32,7 @@ export async function getStaticProps() {
       props: {
         allPeople: shuffleArray(PERSON_DATA_ARRAY),
       },
-      revalidate: 60,
+      revalidate: 30,
     };
   } catch (error) {
     console.error('error', error);
@@ -40,7 +40,7 @@ export async function getStaticProps() {
       props: {
         allPeople: shuffleArray(PERSON_DATA_ARRAY),
       },
-      revalidate: 600,
+      revalidate: 30,
     };
   }
 }
