@@ -160,7 +160,7 @@ const Game: React.FC<Props> = ({ allPeople }) => {
       <GameOverModal correct={correctGuesses} streak={streak} isOpen={isOpen} />
 
       <Flex align="center" flexDir="column" w="full" pt={[4, 4, 8]}>
-        <Heading fontSize={['2xl', '2xl', '4xl']}>Mediter-namean Gamean</Heading>
+        <Heading fontSize={['2xl', '2xl', '4xl']}>Mediter-namean Game</Heading>
         <Flex>
           <Text fontSize="xs">
             {allPeople.length - index - (isSelectedState !== null ? 1 : 0)} names left to guess.
